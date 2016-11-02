@@ -1,0 +1,19 @@
+import praw, pdb, re, os
+from config_bot import *
+import time
+user_agent = ('Panthers_Gameday_Thread')
+r = praw.Reddit(user_agent=user_agent)
+r.login(REDDIT_USERNAME, REDDIT_PASS, disable_warning=True)
+post = r.submit(SUBREDDIT, TITLE, text = 'Happiness Is Not A Place', url=None, captcha=None, save=True)
+
+def getandstore():
+	with open('thisfile.txt','r') as myfile:
+		postthis = myfile.read()
+		post.edit(postthis)
+
+		
+getandstore()
+while True:
+	getandstore()
+	time.sleep(15)
+
